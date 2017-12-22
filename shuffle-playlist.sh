@@ -9,9 +9,9 @@ if [ -z $1 ]; then
   exit 2;
 else
   EXPORTED_PLAYLIST_FILE_NAME=$1;
-  TEMP_DIR=$(mktemp -d);
+  TEMP_DIR=$(mktemp -d /tmp/XXXX);
   cp ${EXPORTED_PLAYLIST_FILE_NAME} ${TEMP_DIR};
-  mac2unix --assume-utf16le --remove-bom -n ${TEMP_DIR}/${EXPORTED_PLAYLIST_FILE_NAME} ${TEMP_DIR}/unix.txt;
+  mac2unix --assume-utf16le --remove-bom -n ${TEMP_DIR}/${EXPORTED_PLAYLIST_FILE_NAME} ${TEMP_DIR}/unix.txt 2>/dev/null;
   head -n 1 ${TEMP_DIR}/unix.txt > ${TEMP_DIR}/header.txt;
   tail -n +2 ${TEMP_DIR}/unix.txt | sort -R > ${TEMP_DIR}/songs.txt;
   cat ${TEMP_DIR}/header.txt ${TEMP_DIR}/songs.txt;
