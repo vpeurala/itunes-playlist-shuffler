@@ -2,7 +2,10 @@
 #
 # Shuffles a playlist exported from iTunes.
 #
-#
+# TODO:
+#   - check that the used commands are found from $PATH (mac2unix, mktemp, sort -R)
+#   - wrap this all in a function which can be included in ~/.zshrc or something
+#   - check the exit status codes of subcommands, give good error messages
 if [ -z $1 ]; then
   echo "Missing mandatory argument EXPORTED_PLAYLIST_FILE_NAME.";
   echo "Usage: $0 EXPORTED_PLAYLIST_FILE_NAME";
